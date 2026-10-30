@@ -25,17 +25,17 @@ const pageContexts = {
   concept:'Cung – cầu, giá cả và cạnh tranh giúp phân bổ nguồn lực. Nhà nước định hướng để phát triển phục vụ mục tiêu xã hội.',
   branches:'Ba cơ sở tạo thành một lập luận: mô hình phù hợp xu thế, phát huy sức sản xuất và hướng tới đời sống nhân dân.',
   V:'Phân công lao động và trao đổi khiến thị trường trở thành cơ chế phổ biến. Việt Nam vận dụng cơ chế ấy theo điều kiện lịch sử và mục tiêu riêng.',
-  VI:'Giá cả truyền tín hiệu, cạnh tranh khuyến khích đổi mới và hiệu quả. Thể chế giúp hạn chế hệ quả tiêu cực, gắn tăng trưởng với lợi ích xã hội.',
+  VI:'Giá cả truyền tín hiệu, cạnh tranh khuyến khích đổi mới và hiệu quả. Hội nhập mở thêm cơ hội tiếp cận thị trường, công nghệ và phương thức quản trị; đồng thời đòi hỏi năng lực cạnh tranh, nhân lực phù hợp và sức chống chịu trước biến động bên ngoài. Thể chế giúp hạn chế hệ quả tiêu cực, gắn tăng trưởng với lợi ích xã hội.',
   VII:'Tăng trưởng tạo nguồn lực cho việc làm, giáo dục và y tế. Tiến bộ xã hội cũng nâng chất lượng và độ bền vững của phát triển.',
   'feature-index':'Năm đặc trưng liên kết thành cách tổ chức và điều tiết nền kinh tế. Chọn một mục để mở phần phân tích tương ứng.',
   feature:'Mục tiêu không dừng ở tăng sản lượng. Cần xem phát triển cải thiện cơ hội và chất lượng sống của người dân ra sao.',
-  ownership:'Các khu vực cùng sản xuất, kinh doanh và cạnh tranh theo pháp luật. Mỗi khu vực có vai trò khác nhau trong việc huy động nguồn lực.',
+  ownership:'Nhiều hình thức sở hữu và thành phần kinh tế giúp huy động nguồn lực, kinh nghiệm và sáng kiến đa dạng. Các chủ thể cùng sản xuất, hợp tác và cạnh tranh theo pháp luật; hoàn thiện thể chế giúp kết nối hoạt động riêng lẻ với mục tiêu phát triển chung.',
   management:'Ba vai trò bổ trợ nhau, không thay thế nhau. Thị trường vận hành; Nhà nước quản lý bằng pháp luật; Đảng định hướng mục tiêu.',
   distribution:'Thu nhập theo lao động và hiệu quả tạo động lực làm việc. Phúc lợi xã hội hỗ trợ người dân tiếp cận dịch vụ thiết yếu.',
-  cycle:'Tăng trưởng tạo nguồn lực cho tiến bộ xã hội. Sức khỏe, tri thức và cơ hội của người dân lại góp phần duy trì phát triển lâu dài.',
-  achievements:'Các nhóm dưới đây cho thấy thay đổi về quy mô, sản xuất, hội nhập và đời sống. Đây là khái quát định tính, không thay thế số liệu theo từng năm.',
-  challenges:'Các hạn chế liên quan lẫn nhau và ảnh hưởng đến chất lượng tăng trưởng. Bảng dưới nêu vì sao từng vấn đề cần được chú ý.',
-  roadmap:'Các hướng hoàn thiện phản hồi trực tiếp những thách thức ở trang trước. Chọn từng bước để xem hành động cụ thể.'
+  cycle:'Phát triển kinh tế không chỉ hướng tới gia tăng sản lượng mà còn cần cải thiện chất lượng cuộc sống. Cơ hội học tập, chăm sóc sức khỏe và an sinh nâng năng lực con người; nguồn nhân lực khỏe mạnh, có tri thức lại hỗ trợ tăng trưởng dài hạn. Tiến bộ và công bằng xã hội vì thế cần được tính đến trong từng bước phát triển.',
+  achievements:'Có thể nhận diện chuyển biến qua sản xuất, cơ cấu kinh tế, hạ tầng và hội nhập. Thương mại, đầu tư và liên kết sản xuất quốc tế giúp mở rộng cơ hội tiếp cận thị trường, công nghệ và phương thức quản trị. Những hình ảnh bên dưới chỉ minh họa chủ đề, không đại diện cho địa điểm hay sự kiện cụ thể; nhận định định lượng cần đối chiếu nguồn thống kê theo năm.',
+  challenges:'Bên cạnh kết quả phát triển, sức ép môi trường, chênh lệch điều kiện sống và khác biệt cơ hội tiếp cận nguồn lực vẫn đặt ra yêu cầu điều tiết. Các vấn đề liên quan lẫn nhau và ảnh hưởng đến chất lượng tăng trưởng. Hình ảnh là minh họa khái quát, không phải bằng chứng thống kê.',
+  roadmap:'Các hướng hoàn thiện phản hồi trực tiếp những thách thức ở trang trước. Nâng cao chất lượng giáo dục, đào tạo và ứng dụng khoa học – công nghệ giúp người lao động thích ứng với chuyển dịch sản xuất, còn thể chế và chính sách công cần kết nối cơ hội phát triển với mục tiêu bền vững. Chọn từng bước để xem hành động cụ thể.'
 };
 const achievementNotes = [
   'Quy mô sản xuất và dịch vụ được mở rộng.',
@@ -73,6 +73,70 @@ const pageHeadline = page => pageSummaries[page.type] || page.thesis;
 const pageContext = page => pageContexts[page.roman] || pageContexts[page.type] || '';
 
 function PageArtwork({ page }) {
+  const photoGroups = {
+    M1: ['https://commons.wikimedia.org/wiki/Special:Redirect/file/Wikipedia_workshop_at_University_of_Economics_and_Business,_Vietnam_National_University.jpg?width=960'],
+    '5.1': ['https://commons.wikimedia.org/wiki/Special:Redirect/file/Discovery_C%E1%BA%A7u_Gi%E1%BA%A5y.jpg?width=960'],
+    '3.1': ['real-agriculture.jpg', 'real-industry.jpg', 'real-services.jpg'],
+    I: ['01-cau-hoi-trong-tam.jpg'],
+    III: ['03-mot-mo-hinh-phat-trien.jpg'],
+    IV: ['04-ba-co-so-lua-chon.jpg'],
+    V: ['05-xu-huong-phat-trien.jpg'],
+    VI: ['06-uu-the-thi-truong.jpg'],
+    VII: ['07-phat-trien-vi-con-nguoi.jpg'],
+    VIII: ['08-nam-phuong-dien.jpg'],
+    IX: ['09-muc-tieu-phat-trien.jpg'],
+    X: ['10-so-huu-da-dang.jpg'],
+    XI: ['11-quan-ly-nen-kinh-te.jpg'],
+    XII: ['12-hinh-thuc-phan-phoi.jpg'],
+    XIII: ['13-tang-truong-cong-bang.jpg'],
+    XIV: ['02-do-thi-ha-tang.jpg'],
+    '3.2': ['real-mechanized-agriculture.jpg'],
+    '3.4': ['real-services.jpg'],
+    XV: ['07-moi-truong-phat-trien-xanh.jpg'],
+    '4.3': ['https://commons.wikimedia.org/wiki/Special:Redirect/file/Mekong_Delta,_Vietnam_(Copernicus).jpg?width=960'],
+    XVI: ['05-nguon-nhan-luc.jpg']
+  };
+  const photoCaptions = {
+    'https://commons.wikimedia.org/wiki/Special:Redirect/file/Mekong_Delta,_Vietnam_(Copernicus).jpg?width=960': 'Ảnh vệ tinh Copernicus thể hiện biến đổi theo mùa ở Đồng bằng sông Cửu Long, 2020–2021',
+    'https://commons.wikimedia.org/wiki/Special:Redirect/file/Wikipedia_workshop_at_University_of_Economics_and_Business,_Vietnam_National_University.jpg?width=960': 'Sinh viên tham gia buổi học tại Đại học Kinh tế, Đại học Quốc gia Hà Nội',
+    'https://commons.wikimedia.org/wiki/Special:Redirect/file/Discovery_C%E1%BA%A7u_Gi%E1%BA%A5y.jpg?width=960': 'Đường chân trời Cầu Giấy, Hà Nội với tuyến metro trên cao',
+    '02-do-thi-ha-tang.jpg': 'Minh họa phát triển đô thị và hạ tầng kinh tế',
+    '05-nguon-nhan-luc.jpg': 'Minh họa đào tạo nhân lực và ứng dụng khoa học – công nghệ',
+    '07-moi-truong-phat-trien-xanh.jpg': 'Minh họa sức ép môi trường và yêu cầu phát triển xanh',
+    '09-chenh-lech-phat-trien.jpg': 'Minh họa khác biệt về điều kiện sống và phát triển đô thị',
+    'real-agriculture.jpg': 'Ruộng lúa tại Việt Nam',
+    'real-industry.jpg': 'Cơ sở sản xuất Exxelia tại Việt Nam',
+    'real-services.jpg': 'Tàu container vận tải trên sông Sài Gòn',
+    'real-mechanized-agriculture.jpg': 'Máy kéo làm đất trên ruộng lúa ở Đồng bằng sông Cửu Long',
+    '01-cau-hoi-trong-tam.jpg': 'Minh họa câu hỏi trọng tâm của chuyên đề',
+    '03-mot-mo-hinh-phat-trien.jpg': 'Minh họa mô hình phát triển kinh tế',
+    '04-ba-co-so-lua-chon.jpg': 'Minh họa ba cơ sở của sự lựa chọn',
+    '05-xu-huong-phat-trien.jpg': 'Minh họa kết nối kinh tế và đô thị',
+    '06-uu-the-thi-truong.jpg': 'Minh họa động lực và ưu thế của thị trường',
+    '07-phat-trien-vi-con-nguoi.jpg': 'Minh họa phát triển vì con người',
+    '08-nam-phuong-dien.jpg': 'Minh họa năm phương diện liên kết',
+    '09-muc-tieu-phat-trien.jpg': 'Minh họa mục tiêu phát triển kinh tế và xã hội',
+    '10-so-huu-da-dang.jpg': 'Minh họa các hình thức sở hữu và khu vực kinh tế',
+    '11-quan-ly-nen-kinh-te.jpg': 'Minh họa quản lý nền kinh tế',
+    '12-hinh-thuc-phan-phoi.jpg': 'Minh họa các hình thức phân phối',
+    '13-tang-truong-cong-bang.jpg': 'Minh họa mối liên hệ giữa tăng trưởng và công bằng'
+  };
+  const photoCredits = {
+    'https://commons.wikimedia.org/wiki/Special:Redirect/file/Mekong_Delta,_Vietnam_(Copernicus).jpg?width=960': { author:'European Union, Copernicus Sentinel-1 imagery', license:'Contains modified Copernicus Sentinel data 2020', licenseUrl:'https://www.copernicus.eu/en/access-data/copernicus-services-data', url:'https://commons.wikimedia.org/wiki/File:Mekong_Delta,_Vietnam_(Copernicus).jpg', original:'https://commons.wikimedia.org/wiki/Special:Redirect/file/Mekong_Delta,_Vietnam_(Copernicus).jpg' },
+    'https://commons.wikimedia.org/wiki/Special:Redirect/file/Wikipedia_workshop_at_University_of_Economics_and_Business,_Vietnam_National_University.jpg?width=960': { author:'Sir Nicholas de Mimsy-Porpington', license:'CC BY-SA 4.0', licenseUrl:'https://creativecommons.org/licenses/by-sa/4.0/', url:'https://commons.wikimedia.org/wiki/File:Wikipedia_workshop_at_University_of_Economics_and_Business,_Vietnam_National_University.jpg', original:'https://upload.wikimedia.org/wikipedia/commons/1/1d/Wikipedia_workshop_at_University_of_Economics_and_Business%2C_Vietnam_National_University.jpg' },
+    'https://commons.wikimedia.org/wiki/Special:Redirect/file/Discovery_C%E1%BA%A7u_Gi%E1%BA%A5y.jpg?width=960': { author:'NKSTTSSHNVN', license:'CC BY-SA 4.0', licenseUrl:'https://creativecommons.org/licenses/by-sa/4.0/', url:'https://commons.wikimedia.org/wiki/File:Discovery_C%E1%BA%A7u_Gi%E1%BA%A5y.jpg', original:'https://upload.wikimedia.org/wikipedia/commons/0/04/Discovery_C%E1%BA%A7u_Gi%E1%BA%A5y.jpg' },
+    'real-agriculture.jpg': { author:'Chris Feser', license:'CC BY 2.0', licenseUrl:'https://creativecommons.org/licenses/by/2.0/', url:'https://commons.wikimedia.org/wiki/File:Rice_fields_in_Vietnam.jpg', original:'https://upload.wikimedia.org/wikipedia/commons/8/8f/Rice_fields_in_Vietnam.jpg' },
+    'real-industry.jpg': { author:'Exxelia Groupe', license:'CC BY-SA 4.0', licenseUrl:'https://creativecommons.org/licenses/by-sa/4.0/', url:'https://commons.wikimedia.org/wiki/File:Exxelia_Usine_-_Vietnam.jpg', original:'https://upload.wikimedia.org/wikipedia/commons/f/f6/Exxelia_Usine_-_Vietnam.jpg' },
+    'real-services.jpg': { author:'Syced', license:'CC0', licenseUrl:'https://creativecommons.org/publicdomain/zero/1.0/', url:'https://commons.wikimedia.org/wiki/File:Container_ships_on_Saigon_River.jpg', original:'https://upload.wikimedia.org/wikipedia/commons/5/5e/Container_ships_on_Saigon_River.jpg' },
+    'real-mechanized-agriculture.jpg': { author:'Thomas Schoch', license:'CC BY-SA 3.0', licenseUrl:'https://creativecommons.org/licenses/by-sa/3.0/', url:'https://commons.wikimedia.org/wiki/File:Tractor_Mekong_Delta_Vietnam.jpg', original:'https://upload.wikimedia.org/wikipedia/commons/b/be/Tractor_Mekong_Delta_Vietnam.jpg' }
+  };
+  const photos = photoGroups[page.roman];
+  if (photos) return <div className={`page-artwork photo-gallery ${photos.length > 1 ? 'photo-gallery-multiple' : ''} ${photos.length === 2 ? 'photo-gallery-pair' : ''} ${photos.length > 2 ? 'photo-gallery-triple' : ''}`}>
+    {photos.map(file => <figure className="book-photo" key={file}>
+      {photoCredits[file]?<a className="photo-image-link" href={photoCredits[file].original} target="_blank" rel="noreferrer" aria-label={`Xem ảnh gốc: ${photoCaptions[file]}`}><img src={file.startsWith('https://')?file:`/images/book/${file}?v=3`} alt={photoCaptions[file]} loading="lazy" /></a>:<img src={file.startsWith('https://')?file:`/images/book/${file}?v=3`} alt={photoCaptions[file]} loading="lazy" />}
+      {photoCredits[file]&&<figcaption><small>Ảnh: <a href={photoCredits[file].url} target="_blank" rel="noreferrer">{photoCredits[file].author}</a> · <a href={photoCredits[file].licenseUrl} target="_blank" rel="noreferrer">{photoCredits[file].license}</a></small></figcaption>}
+    </figure>)}
+  </div>;
   const captions = {
     question:'BA CÂU HỎI · MỘT HÀNH TRÌNH', concept:'THỊ TRƯỜNG + ĐỊNH HƯỚNG XÃ HỘI',
     branches:'BA CƠ SỞ · MỘT LỰA CHỌN', argument:page.roman==='V'?'TRAO ĐỔI · KẾT NỐI · PHÁT TRIỂN':page.roman==='VI'?'CẠNH TRANH · ĐỔI MỚI · NĂNG SUẤT':'TĂNG TRƯỞNG VÌ CON NGƯỜI',
@@ -101,16 +165,16 @@ function PageArtwork({ page }) {
   return <figure className="page-artwork"><svg viewBox="0 0 520 170" aria-hidden="true"><rect x="8" y="7" width="504" height="156" rx="8" fill="#eee5d5"/><path d="M20 144c77-32 119 3 192-7s113-41 189-25 90 5 99-1v43H20z" fill="#e1d5c1" opacity=".78"/>{art}</svg><figcaption>{captions[page.type]}</figcaption></figure>;
 }
 
-function BookPage({ page, pageNumber, goTo }) {
+function BookPage({ page, pageNumber, goTo, readerPages=pages }) {
   const [choice,setChoice]=useState(page.type==='roadmap'?-1:0);
-  return <article className={`book-page page-${page.type}`}>
+  return <article className={`book-page page-${page.type}`} data-roman={page.roman.toLowerCase()}>
     {page.type==='back-cover'&&<div className="back-cover-art"><div className="back-cover-frame"><span className="back-cover-kicker">MLN122 <i>·</i> NHÓM 05</span><div className="back-cover-ornament">✳</div><p>{pageHeadline(page)}</p><span className="back-cover-rule"/><small>POLITICAL ECONOMY · VIỆT NAM</small><button onClick={()=>goTo(-1)}><BookOpen size={16}/> ĐÓNG SÁCH</button></div></div>}
     <div className="page-topline"><span>MLN122 <i>·</i> KINH TẾ CHÍNH TRỊ MÁC – LÊNIN</span><span>{page.section}</span></div>
     <div className="page-content">
       <span className="page-kicker">{page.roman} <i>/</i> {page.section}</span>
       <h2>{page.title}</h2>
-      {!['toc','back-cover','conclusion'].includes(page.type)&&<PageArtwork page={page}/>}
-      {page.type==='toc'&&<><p className="page-thesis toc-thesis">{pageHeadline(page)}</p><div className="book-toc-grid">{pages.map((entry,index)=>index!==1&&entry.type!=='back-cover'&&<button key={entry.roman} onClick={()=>goTo(index)}><span>{String(index+1).padStart(2,'0')}</span><b>{entry.title}</b><i>{entry.section}</i></button>)}</div></>}
+      {!['toc','back-cover','conclusion','essay','references'].includes(page.type)&&<PageArtwork page={page}/>}
+      {page.type==='toc'&&<><p className="page-thesis toc-thesis">{pageHeadline(page)}</p><div className="book-toc-grid">{pages.map((entry,index)=>({entry,index})).filter(({entry})=>entry.tocEntry||['I','III','IV','VIII','XIV','XV','XVI','XVII'].includes(entry.roman)).map(({entry,index})=><button key={entry.roman} onClick={()=>goTo(readerPages.findIndex(rendered=>rendered.roman===entry.roman))}><span>{String(readerPages.findIndex(rendered=>rendered.roman===entry.roman)+1).padStart(2,'0')}</span><b>{entry.title}</b><i>{entry.section}</i></button>)}</div></>}
       {page.type==='question'&&<><p className="question-text">Ba câu hỏi chính: Vì sao cần? Mô hình có đặc trưng gì? Kết quả và thách thức ra sao?</p><div className="three-questions">{page.items.map(item=><div key={item[0]}><span>{item[0]}</span><b>{item[1]}</b><p>{item[2]}</p></div>)}</div></>}
       {page.type==='concept'&&<><p className="definition">{pageHeadline(page)}</p><PageContext page={page}/><div className="concept-ribbon"><span>THỊ TRƯỜNG</span><i>×</i><span>THỂ CHẾ</span><i>×</i><span>MỤC TIÊU XÃ HỘI</span></div></>}
       {page.type==='branches'&&<><p className="page-thesis">{pageHeadline(page)}</p><PageContext page={page}/><div className="branch-list">{page.items.map((x,i)=><button key={x[0]} onClick={()=>goTo(pages.findIndex(entry=>entry.roman===['V','VI','VII'][i]))}><span>{x[0]}</span><span><b>{x[1]}</b><small>{x[2]}</small></span><ArrowRight size={16}/></button>)}</div></>}
@@ -124,7 +188,9 @@ function BookPage({ page, pageNumber, goTo }) {
       {page.type==='achievements'&&<><p className="page-thesis">{pageHeadline(page)}</p><PageContext page={page}/><div className="achievement-list">{page.items.map((item,i)=><div key={item[0]}><span>{item[0]}</span><div><b>{item[1]}</b><p>{achievementNotes[i]}</p></div></div>)}</div></>}
       {page.type==='challenges'&&<><p className="page-thesis">{pageHeadline(page)}</p><PageContext page={page}/><div className="challenge-table"><div className="challenge-head"><span>THÁCH THỨC</span><span>VÌ SAO CẦN LƯU Ý</span></div>{page.items.map((item,i)=><div key={item[0]} className="challenge-row"><b><i>0{i+1}</i>{item[0]}</b><p>{challengeNotes[i]}</p></div>)}</div></>}
       {page.type==='roadmap'&&<><p className="page-thesis">{pageHeadline(page)}</p><PageContext page={page}/><div className="roadmap-list">{page.items.map((item,i)=><button key={item[0]} className={choice===i?'chosen':''} onClick={()=>setChoice(choice===i?-1:i)}><span>{item[0]}</span><b>{item[1]}</b><ChevronDown size={14}/>{choice===i&&<p>{item[2]}</p>}</button>)}</div></>}
-      {page.type==='conclusion'&&<><div className="conclusion-opening"><p className="conclusion-lead">{pageHeadline(page)}</p><svg className="conclusion-illustration" viewBox="0 0 620 190" role="img" aria-label="Minh họa tăng trưởng kinh tế gắn với phát triển con người"><path d="M20 155H600" stroke="#c8b58e" strokeWidth="2"/><path d="M40 153c75-56 125-34 194-64 56-25 101-11 158-42 57-30 117-22 185-48" fill="none" stroke="#b19362" strokeWidth="3" strokeDasharray="6 8"/><circle cx="574" cy="42" r="24" fill="#e0c895" opacity=".55"/><rect x="73" y="108" width="62" height="45" rx="3" fill="#d7c6a7"/><rect x="154" y="84" width="62" height="69" rx="3" fill="#c4aa7c"/><rect x="235" y="61" width="62" height="92" rx="3" fill="#b19362"/><path d="M103 107V91h30v17M183 83V65h30v18M264 60V39h30v21" fill="none" stroke="#806844" strokeWidth="3"/><circle cx="405" cy="98" r="14" fill="#622b34"/><path d="M379 151c2-27 11-41 26-41s25 14 27 41" fill="#622b34"/><circle cx="466" cy="111" r="11" fill="#946f64"/><path d="M445 151c2-21 9-32 21-32s19 11 21 32" fill="#946f64"/><circle cx="524" cy="104" r="12" fill="#b19362"/><path d="M502 151c2-23 10-35 22-35s20 12 22 35" fill="#b19362"/><path d="M334 154v-31m-12 0h24m-20-15 8 15 8-15" stroke="#622b34" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/></svg></div><div className="conclusion-visual-caption"><span>ĐỘNG LỰC THỊ TRƯỜNG</span><i>→</i><span>TĂNG TRƯỞNG</span><i>→</i><span>CHẤT LƯỢNG SỐNG</span></div><div className="conclusion-points">{page.items.map(item=><div key={item[0]}><span>{item[0]}</span><b>{item[1]}</b><p>{item[2]}</p></div>)}</div><p className="conclusion-close">Tiếp tục hoàn thiện thể chế để tăng trưởng đi cùng tiến bộ, công bằng và phát triển bền vững.</p><p className="thank-you">CẢM ƠN GIẢNG VIÊN VÀ CÁC BẠN</p><div className="reference-list"><span>NGUỒN THAM KHẢO</span>{references.map(r=><a key={r.url} href={r.url} target="_blank" rel="noreferrer">{r.label}<ArrowRight size={12}/></a>)}</div></>}
+      {page.type==='essay'&&<>{!page.continued&&<p className="page-thesis essay-thesis">{pageHeadline(page)}</p>}{page.roman==='3.1'&&!page.continued&&<PageArtwork page={page}/>}<div className="essay-copy">{['3.2','3.4','4.3','M1','5.1'].includes(page.roman)&&!page.continued&&<PageArtwork page={page} />}{page.paragraphs.map((paragraph,index)=><p key={index}>{paragraph}</p>)}</div>{page.example&&<aside className="essay-example"><span>VÍ DỤ MINH HỌA</span><p>{page.example}</p></aside>}{page.takeaway&&<p className="essay-takeaway"><Bookmark size={12}/>{page.takeaway}</p>}{page.source&&<p className="essay-source">Nguồn: <a href={page.sourceUrl} target="_blank" rel="noreferrer">{page.source}</a></p>}</>}
+      {page.type==='references'&&<><p className="page-thesis">{pageHeadline(page)}</p><div className="academic-references">{references.map((reference,index)=><a key={reference.url} href={reference.url} target="_blank" rel="noreferrer"><span>{String(index+1).padStart(2,'0')}</span><b>{reference.label}</b><ArrowRight size={13}/></a>)}</div><p className="references-note">Số liệu được ghi theo kỳ tham chiếu và đơn vị công bố. Ảnh tư liệu trang 3.1, 3.2 và 3.4 có nguồn, giấy phép trong chú thích; 9 ảnh thay thế và các ảnh minh họa còn lại được tạo bằng AI.</p></>}
+      {page.type==='conclusion'&&<><div className="conclusion-opening"><p className="conclusion-lead">{pageHeadline(page)}</p><svg className="conclusion-illustration" viewBox="0 0 620 190" role="img" aria-label="Minh họa tăng trưởng kinh tế gắn với phát triển con người"><path d="M20 155H600" stroke="#c8b58e" strokeWidth="2"/><path d="M40 153c75-56 125-34 194-64 56-25 101-11 158-42 57-30 117-22 185-48" fill="none" stroke="#b19362" strokeWidth="3" strokeDasharray="6 8"/><circle cx="574" cy="42" r="24" fill="#e0c895" opacity=".55"/><rect x="73" y="108" width="62" height="45" rx="3" fill="#d7c6a7"/><rect x="154" y="84" width="62" height="69" rx="3" fill="#c4aa7c"/><rect x="235" y="61" width="62" height="92" rx="3" fill="#b19362"/><path d="M103 107V91h30v17M183 83V65h30v18M264 60V39h30v21" fill="none" stroke="#806844" strokeWidth="3"/><circle cx="405" cy="98" r="14" fill="#622b34"/><path d="M379 151c2-27 11-41 26-41s25 14 27 41" fill="#622b34"/><circle cx="466" cy="111" r="11" fill="#946f64"/><path d="M445 151c2-21 9-32 21-32s19 11 21 32" fill="#946f64"/><circle cx="524" cy="104" r="12" fill="#b19362"/><path d="M502 151c2-23 10-35 22-35s20 12 22 35" fill="#b19362"/><path d="M334 154v-31m-12 0h24m-20-15 8 15 8-15" stroke="#622b34" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/></svg></div><div className="conclusion-visual-caption"><span>ĐỘNG LỰC THỊ TRƯỜNG</span><i>→</i><span>TĂNG TRƯỞNG</span><i>→</i><span>CHẤT LƯỢNG SỐNG</span></div><div className="conclusion-points">{page.items.map(item=><div key={item[0]}><span>{item[0]}</span><b>{item[1]}</b><p>{item[2]}</p></div>)}</div><p className="conclusion-close">Tiếp tục hoàn thiện thể chế để tăng trưởng đi cùng tiến bộ, công bằng và phát triển bền vững.</p><p className="thank-you">CẢM ƠN GIẢNG VIÊN VÀ CÁC BẠN</p><div className="reference-list"><span>NGUỒN THAM KHẢO</span>{references.slice(0,3).map(r=><a key={r.url} href={r.url} target="_blank" rel="noreferrer">{r.label}<ArrowRight size={12}/></a>)}</div></>}
     </div>
     <footer className="page-footer"><span>{pageNumber % 2 === 1 ? 'NHÓM 05 · MLN122' : 'KINH TẾ THỊ TRƯỜNG ĐỊNH HƯỚNG XHCN'}</span><b>{String(pageNumber).padStart(2,'0')}</b></footer>
   </article>
@@ -145,8 +211,8 @@ function ArgumentDetails({page}) {
   </section>;
 }
 
-const FlipPage = React.forwardRef(function FlipPage({page,pageNumber,goTo},ref){
-  return <div className="flip-page-shell" ref={ref}><BookPage page={page} pageNumber={pageNumber} goTo={goTo}/></div>
+const FlipPage = React.forwardRef(function FlipPage({page,pageNumber,goTo,readerPages},ref){
+  return <div className="flip-page-shell" ref={ref}><BookPage page={page} pageNumber={pageNumber} goTo={goTo} readerPages={readerPages}/></div>
 });
 
 function BookCover({ openBook, opening=false }) {
@@ -157,19 +223,20 @@ function BookCover({ openBook, opening=false }) {
 
 function App(){
   const [opened,setOpened]=useState(false),[opening,setOpening]=useState(false),[toc,setToc]=useState(false),[fullscreen,setFullscreen]=useState(false),[single,setSingle]=useState(false),[orientation,setOrientation]=useState('landscape'),[pageIndex,setPageIndex]=useState(0),[flipState,setFlipState]=useState('read'),[size,setSize]=useState({width:600,height:740});
+  const readerPages=pages;
   const bookRef=useRef(null),openTimer=useRef(null);
   useEffect(()=>{const update=()=>{const portrait=window.matchMedia('(max-width: 860px)').matches;setSingle(portrait);const maxH=Math.min(window.innerHeight*.78,840);if(portrait){const w=Math.max(260,Math.min(window.innerWidth*.9,maxH*.72));setSize({width:Math.round(w),height:Math.round(Math.min(maxH,w/.68))})}else{const h=maxH;const w=Math.max(280,Math.min(window.innerWidth*.46,h*.85));setSize({width:Math.round(w),height:Math.round(h)})}};update();window.addEventListener('resize',update);return()=>window.removeEventListener('resize',update)},[]);
   useEffect(()=>()=>clearTimeout(openTimer.current),[]);
   const openBook=()=>{setOpening(true);openTimer.current=setTimeout(()=>{setOpened(true);setOpening(false);setPageIndex(0)},850)};
   const changePage=useCallback(e=>{if(Number.isInteger(e?.data))setPageIndex(e.data)},[]);
   const turn=(direction)=>{const api=bookRef.current?.pageFlip?.();if(!api)return;if(direction==='next')api.flipNext('bottom');else api.flipPrev('bottom')};
-  const turnToPage=(target)=>{bookRef.current?.pageFlip?.().turnToPage(target);setPageIndex(target);setToc(false)};
+  const turnToPage=(target)=>{const sourceRoman=pages[target]?.roman;const displayIndex=readerPages.findIndex(page=>page.roman===sourceRoman);if(displayIndex<0)return;bookRef.current?.pageFlip?.().turnToPage(displayIndex);setPageIndex(displayIndex);setToc(false)};
   const toggleFullscreen=async()=>{try{if(!document.fullscreenElement){await document.documentElement.requestFullscreen();setFullscreen(true)}else{await document.exitFullscreen();setFullscreen(false)}}catch{}}
   useEffect(()=>{const onKey=e=>{if(e.key==='Escape'&&toc){setToc(false);return}if(toc)return;if(e.key==='ArrowRight'){e.preventDefault();turn('next')}if(e.key==='ArrowLeft'){e.preventDefault();turn('prev')}};window.addEventListener('keydown',onKey);return()=>window.removeEventListener('keydown',onKey)},[toc]);
   const closeToCover=()=>{setToc(false);setOpened(false);setOpening(false);setPageIndex(0)};
-  const indicatorStart=orientation==='portrait'?pageIndex:Math.floor(pageIndex/2)*2;
-  const indicatorEnd=orientation==='portrait'?pageIndex+1:Math.min(indicatorStart+2,pages.length);
-  const totalWidth=orientation==='portrait'?size.width:size.width*2;
+  const indicatorStart=single?pageIndex:Math.floor(pageIndex/2)*2;
+  const indicatorEnd=single?pageIndex+1:Math.min(indicatorStart+2,readerPages.length);
+  const totalWidth=single?size.width:size.width*2;
   const turnToPageAndClose=target=>{if(target<0){closeToCover();return}turnToPage(target)};
 
   return <main className={`reader ${opened?'is-open':'is-closed'} ${single?'single-page':''}`}>
@@ -178,11 +245,11 @@ function App(){
     <section className="book-stage" style={{width:`${totalWidth}px`,height:`${size.height}px`}} aria-label="Sách tương tác">
       {!opened&&!opening&&<BookCover openBook={openBook}/>}
       {(opened||opening)&&<div className="flipbook-shell"><HTMLFlipBook ref={bookRef} className="book-flip" width={size.width} height={size.height} size="fixed" minWidth={220} maxWidth={1000} minHeight={360} maxHeight={1400} drawShadow usePortrait={single} startPage={0} autoSize={false} maxShadowOpacity={0.58} showCover={false} showPageCorners mobileScrollSupport={false} swipeDistance={42} flippingTime={1050} clickEventForward useMouseEvents onFlip={changePage} onChangeOrientation={e=>setOrientation(e.data)} onChangeState={e=>setFlipState(e.data)}>
-          {pages.map((page,i)=><FlipPage key={page.roman} page={page} pageNumber={i+1} goTo={turnToPageAndClose}/>)}</HTMLFlipBook><span className={`corner-cue ${flipState==='user_fold'||flipState==='fold_corner'?'visible':''}`}>KÉO GÓC TRANG ĐỂ LẬT</span></div>}
+          {readerPages.map((page,i)=><FlipPage key={page.roman} page={page} readerPages={readerPages} pageNumber={i+1} goTo={turnToPageAndClose}/>)}</HTMLFlipBook><span className={`corner-cue ${flipState==='user_fold'||flipState==='fold_corner'?'visible':''}`}>KÉO GÓC TRANG ĐỂ LẬT</span></div>}
       {opening&&<BookCover opening openBook={()=>{}}/>}
-      <AnimatePresence>{toc&&<><motion.button className="toc-scrim" aria-label="Đóng mục lục" onClick={()=>setToc(false)} initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}}/><motion.aside className="toc-panel" initial={{x:30,opacity:0}} animate={{x:0,opacity:1}} exit={{x:30,opacity:0}}><div className="toc-heading"><div><span>MLN122 · NHÓM 05</span><h2>Mục lục</h2></div><button className="tool-button" onClick={()=>setToc(false)} aria-label="Đóng mục lục"><X/></button></div><button className="toc-cover" onClick={closeToCover}><span>BÌA SÁCH</span><b>Kinh tế thị trường định hướng XHCN</b><ArrowLeft size={15}/></button><div className="toc-items">{pages.map((p,i)=><button className={indicatorStart===i||indicatorEnd-1===i?'current':''} onClick={()=>turnToPage(i)} key={p.roman}><span>{p.roman}</span><b>{p.title}</b><small>{String(i+1).padStart(2,'0')}</small></button>)}</div></motion.aside></>}</AnimatePresence>
+      <AnimatePresence>{toc&&<><motion.button className="toc-scrim" aria-label="Đóng mục lục" onClick={()=>setToc(false)} initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}}/><motion.aside className="toc-panel" initial={{x:30,opacity:0}} animate={{x:0,opacity:1}} exit={{x:30,opacity:0}}><div className="toc-heading"><div><span>MLN122 · NHÓM 05</span><h2>Mục lục</h2></div><button className="tool-button" onClick={()=>setToc(false)} aria-label="Đóng mục lục"><X/></button></div><button className="toc-cover" onClick={closeToCover}><span>BÌA SÁCH</span><b>Kinh tế thị trường định hướng XHCN</b><ArrowLeft size={15}/></button><div className="toc-items">{pages.map((p,i)=><button className={indicatorStart===readerPages.findIndex(entry=>entry.roman===p.roman)||indicatorEnd-1===readerPages.findIndex(entry=>entry.roman===p.roman)?'current':''} onClick={()=>turnToPage(i)} key={p.roman}><span>{p.roman}</span><b>{p.title}</b><small>{String(readerPages.findIndex(entry=>entry.roman===p.roman)+1).padStart(2,'0')}</small></button>)}</div></motion.aside></>}</AnimatePresence>
     </section>
-    {opened&&<><nav className="book-controls" aria-label="Điều hướng sách"><span className="page-indicator">TRANG {String(indicatorStart+1).padStart(2,'0')}{indicatorEnd>indicatorStart+1?`–${String(indicatorEnd).padStart(2,'0')}`:''} / {pages.length}</span><span className="control-separator"/><button className={`control-button text-control ${toc?'selected':''}`} onClick={()=>setToc(!toc)} aria-label="Mục lục"><List/><span>MỤC LỤC</span></button><button className="control-button" onClick={toggleFullscreen} aria-label={fullscreen?'Thoát toàn màn hình':'Toàn màn hình'}>{fullscreen?<Minimize2/>:<Maximize2/>}</button><button className="control-button" onClick={closeToCover} aria-label="Quay về bìa"><BookOpen/><span className="return-label">BÌA</span></button></nav><div className="flip-instruction">DÙNG PHÍM ← → HOẶC KÉO GÓC TRANG ĐỂ LẬT SÁCH</div></>}
+    {opened&&<><nav className="book-controls" aria-label="Điều hướng sách"><span className="page-indicator">TRANG {String(indicatorStart+1).padStart(2,'0')}{indicatorEnd>indicatorStart+1?`–${String(indicatorEnd).padStart(2,'0')}`:''} / {readerPages.length}</span><span className="control-separator"/><button className={`control-button text-control ${toc?'selected':''}`} onClick={()=>setToc(!toc)} aria-label="Mục lục"><List/><span>MỤC LỤC</span></button><button className="control-button" onClick={toggleFullscreen} aria-label={fullscreen?'Thoát toàn màn hình':'Toàn màn hình'}>{fullscreen?<Minimize2/>:<Maximize2/>}</button><button className="control-button" onClick={closeToCover} aria-label="Quay về bìa"><BookOpen/><span className="return-label">BÌA</span></button></nav><div className="flip-instruction">DÙNG PHÍM ← → HOẶC KÉO GÓC TRANG ĐỂ LẬT SÁCH</div></>}
     {!opened&&<div className="closed-caption"><span>MỘT CUỐN SÁCH VỀ BA CÂU HỎI LỚN</span><span>01 — SỰ CẦN THIẾT &nbsp; / &nbsp; 02 — ĐẶC TRƯNG &nbsp; / &nbsp; 03 — THỰC TIỄN</span></div>}
     <div className="ambient-foot"><span>THE POLITICAL ECONOMY</span><span>{opened?`TRANG ${String(indicatorStart+1).padStart(2,'0')}`:'MỞ SÁCH ĐỂ BẮT ĐẦU'}</span></div>
   </main>
