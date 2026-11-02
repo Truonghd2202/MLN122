@@ -76,6 +76,8 @@ function PageArtwork({ page }) {
   const photoGroups = {
     M1: ['https://commons.wikimedia.org/wiki/Special:Redirect/file/Wikipedia_workshop_at_University_of_Economics_and_Business,_Vietnam_National_University.jpg?width=960'],
     '5.1': ['https://commons.wikimedia.org/wiki/Special:Redirect/file/Discovery_C%E1%BA%A7u_Gi%E1%BA%A5y.jpg?width=960'],
+    '4.3.3.1': ['ford-assembly-line-1913.jpg'],
+    '4.3.3.2': ['urban-housing-contrast-vietnam.jpg'],
     '3.1': ['real-agriculture.jpg', 'real-industry.jpg', 'real-services.jpg'],
     I: ['01-cau-hoi-trong-tam.jpg'],
     III: ['03-mot-mo-hinh-phat-trien.jpg'],
@@ -103,7 +105,7 @@ function PageArtwork({ page }) {
     '02-do-thi-ha-tang.jpg': 'Minh họa phát triển đô thị và hạ tầng kinh tế',
     '05-nguon-nhan-luc.jpg': 'Minh họa đào tạo nhân lực và ứng dụng khoa học – công nghệ',
     '07-moi-truong-phat-trien-xanh.jpg': 'Minh họa sức ép môi trường và yêu cầu phát triển xanh',
-    '09-chenh-lech-phat-trien.jpg': 'Minh họa khác biệt về điều kiện sống và phát triển đô thị',
+    'urban-housing-contrast-vietnam.jpg': 'Nhà ven sông và chung cư cao tầng tại Thành phố Hồ Chí Minh; ảnh minh họa tương phản điều kiện sống, không phải dữ liệu thu nhập',
     'real-agriculture.jpg': 'Ruộng lúa tại Việt Nam',
     'real-industry.jpg': 'Cơ sở sản xuất Exxelia tại Việt Nam',
     'real-services.jpg': 'Tàu container vận tải trên sông Sài Gòn',
@@ -111,7 +113,7 @@ function PageArtwork({ page }) {
     '01-cau-hoi-trong-tam.jpg': 'Minh họa câu hỏi trọng tâm của chuyên đề',
     '03-mot-mo-hinh-phat-trien.jpg': 'Minh họa mô hình phát triển kinh tế',
     '04-ba-co-so-lua-chon.jpg': 'Minh họa ba cơ sở của sự lựa chọn',
-    '05-xu-huong-phat-trien.jpg': 'Minh họa kết nối kinh tế và đô thị',
+    'ford-assembly-line-1913.jpg': 'Dây chuyền lắp ráp ô tô Ford tại Highland Park năm 1913; minh họa sản xuất hàng loạt và chuyên môn hóa lao động',
     '06-uu-the-thi-truong.jpg': 'Minh họa động lực và ưu thế của thị trường',
     '07-phat-trien-vi-con-nguoi.jpg': 'Minh họa phát triển vì con người',
     '08-nam-phuong-dien.jpg': 'Minh họa năm phương diện liên kết',
@@ -134,7 +136,7 @@ function PageArtwork({ page }) {
   if (photos) return <div className={`page-artwork photo-gallery ${photos.length > 1 ? 'photo-gallery-multiple' : ''} ${photos.length === 2 ? 'photo-gallery-pair' : ''} ${photos.length > 2 ? 'photo-gallery-triple' : ''}`}>
     {photos.map(file => <figure className="book-photo" key={file}>
       {photoCredits[file]?<a className="photo-image-link" href={photoCredits[file].original} target="_blank" rel="noreferrer" aria-label={`Xem ảnh gốc: ${photoCaptions[file]}`}><img src={file.startsWith('https://')?file:`/images/book/${file}?v=3`} alt={photoCaptions[file]} loading="lazy" /></a>:<img src={file.startsWith('https://')?file:`/images/book/${file}?v=3`} alt={photoCaptions[file]} loading="lazy" />}
-      {photoCredits[file]&&<figcaption><small>Ảnh: <a href={photoCredits[file].url} target="_blank" rel="noreferrer">{photoCredits[file].author}</a> · <a href={photoCredits[file].licenseUrl} target="_blank" rel="noreferrer">{photoCredits[file].license}</a></small></figcaption>}
+      {photoCredits[file]?<figcaption><small>Ảnh: <a href={photoCredits[file].url} target="_blank" rel="noreferrer">{photoCredits[file].author}</a> · <a href={photoCredits[file].licenseUrl} target="_blank" rel="noreferrer">{photoCredits[file].license}</a></small></figcaption>:['4.3.3.1','4.3.3.2'].includes(page.roman)&&<figcaption>{photoCaptions[file]}</figcaption>}
     </figure>)}
   </div>;
   const captions = {
@@ -165,13 +167,13 @@ function PageArtwork({ page }) {
   return <figure className="page-artwork"><svg viewBox="0 0 520 170" aria-hidden="true"><rect x="8" y="7" width="504" height="156" rx="8" fill="#eee5d5"/><path d="M20 144c77-32 119 3 192-7s113-41 189-25 90 5 99-1v43H20z" fill="#e1d5c1" opacity=".78"/>{art}</svg><figcaption>{captions[page.type]}</figcaption></figure>;
 }
 
-function BookPage({ page, pageNumber, goTo, readerPages=pages }) {
+function BookPage({ page, pageNumber, goTo, readerPages=pages, quizAnswers={}, quizChecked={}, quizScore=0, quizCheckedCount=0, quizTotal=0, onQuizAnswer, onQuizCheck, onQuizReset }) {
   const [choice,setChoice]=useState(page.type==='roadmap'?-1:0);
   return <article className={`book-page page-${page.type}`} data-roman={page.roman.toLowerCase()}>
     {page.type==='back-cover'&&<div className="back-cover-art"><div className="back-cover-frame"><span className="back-cover-kicker">MLN122 <i>·</i> NHÓM 05</span><div className="back-cover-ornament">✳</div><p>{pageHeadline(page)}</p><span className="back-cover-rule"/><small>POLITICAL ECONOMY · VIỆT NAM</small><button onClick={()=>goTo(-1)}><BookOpen size={16}/> ĐÓNG SÁCH</button></div></div>}
     <div className="page-topline"><span>MLN122 <i>·</i> KINH TẾ CHÍNH TRỊ MÁC – LÊNIN</span><span>{page.section}</span></div>
     <div className="page-content">
-      <span className="page-kicker">{page.roman} <i>/</i> {page.section}</span>
+      <span className={`page-kicker ${page.outline?'has-outline':''}`}>{page.outline?<><b>{page.outline.chapter}</b><i>/</i>{page.outline.section}</>:<>{page.roman} <i>/</i> {page.section}</>}</span>
       <h2>{page.title}</h2>
       {!['toc','back-cover','conclusion','essay','references'].includes(page.type)&&<PageArtwork page={page}/>}
       {page.type==='toc'&&<><p className="page-thesis toc-thesis">{pageHeadline(page)}</p><div className="book-toc-grid">{pages.map((entry,index)=>({entry,index})).filter(({entry})=>entry.tocEntry||['I','III','IV','VIII','XIV','XV','XVI','XVII'].includes(entry.roman)).map(({entry,index})=><button key={entry.roman} onClick={()=>goTo(readerPages.findIndex(rendered=>rendered.roman===entry.roman))}><span>{String(readerPages.findIndex(rendered=>rendered.roman===entry.roman)+1).padStart(2,'0')}</span><b>{entry.title}</b><i>{entry.section}</i></button>)}</div></>}
@@ -188,12 +190,40 @@ function BookPage({ page, pageNumber, goTo, readerPages=pages }) {
       {page.type==='achievements'&&<><p className="page-thesis">{pageHeadline(page)}</p><PageContext page={page}/><div className="achievement-list">{page.items.map((item,i)=><div key={item[0]}><span>{item[0]}</span><div><b>{item[1]}</b><p>{achievementNotes[i]}</p></div></div>)}</div></>}
       {page.type==='challenges'&&<><p className="page-thesis">{pageHeadline(page)}</p><PageContext page={page}/><div className="challenge-table"><div className="challenge-head"><span>THÁCH THỨC</span><span>VÌ SAO CẦN LƯU Ý</span></div>{page.items.map((item,i)=><div key={item[0]} className="challenge-row"><b><i>0{i+1}</i>{item[0]}</b><p>{challengeNotes[i]}</p></div>)}</div></>}
       {page.type==='roadmap'&&<><p className="page-thesis">{pageHeadline(page)}</p><PageContext page={page}/><div className="roadmap-list">{page.items.map((item,i)=><button key={item[0]} className={choice===i?'chosen':''} onClick={()=>setChoice(choice===i?-1:i)}><span>{item[0]}</span><b>{item[1]}</b><ChevronDown size={14}/>{choice===i&&<p>{item[2]}</p>}</button>)}</div></>}
-      {page.type==='essay'&&<>{!page.continued&&<p className="page-thesis essay-thesis">{pageHeadline(page)}</p>}{page.roman==='3.1'&&!page.continued&&<PageArtwork page={page}/>}<div className="essay-copy">{['3.2','3.4','4.3','M1','5.1'].includes(page.roman)&&!page.continued&&<PageArtwork page={page} />}{page.paragraphs.map((paragraph,index)=><p key={index}>{paragraph}</p>)}</div>{page.example&&<aside className="essay-example"><span>VÍ DỤ MINH HỌA</span><p>{page.example}</p></aside>}{page.takeaway&&<p className="essay-takeaway"><Bookmark size={12}/>{page.takeaway}</p>}{page.source&&<p className="essay-source">Nguồn: <a href={page.sourceUrl} target="_blank" rel="noreferrer">{page.source}</a></p>}</>}
+      {page.type==='quiz'&&<><p className="page-thesis review-thesis">{pageHeadline(page)}</p><QuizPractice page={page} answers={quizAnswers} checked={quizChecked} score={quizScore} checkedCount={quizCheckedCount} total={quizTotal} onAnswer={onQuizAnswer} onCheck={onQuizCheck} onReset={onQuizReset}/></>}
+      {page.type==='review-essay'&&<><p className="page-thesis review-thesis">{pageHeadline(page)}</p><EssayPractice questions={page.questions}/></>}
+      {page.type==='essay'&&<>{!page.continued&&<p className="page-thesis essay-thesis">{pageHeadline(page)}</p>}{page.roman==='3.1'&&!page.continued&&<PageArtwork page={page}/>}<div className="essay-copy">{['3.2','3.4','4.3','M1','5.1','4.3.3.1','4.3.3.2'].includes(page.roman)&&!page.continued&&<PageArtwork page={page} />}{page.guidingQuestions&&<section className="guiding-question-block" aria-label="Ba câu hỏi dẫn dắt"><span>CÂU HỎI DẪN DẮT</span><ol>{page.guidingQuestions.map((question,index)=><li key={question}><b>{String(index+1).padStart(2,'0')}</b><p>{question}</p></li>)}</ol></section>}{page.paragraphs.map((paragraph,index)=><p key={index}>{paragraph}</p>)}</div>{page.example&&<aside className="essay-example"><span>VÍ DỤ MINH HỌA</span><p>{page.example}</p></aside>}{page.takeaway&&<p className="essay-takeaway"><Bookmark size={12}/>{page.takeaway}</p>}{page.source&&<p className="essay-source">Nguồn: {page.sourceUrl?<a href={page.sourceUrl} target="_blank" rel="noreferrer">{page.source}</a>:page.source}</p>}</>}
       {page.type==='references'&&<><p className="page-thesis">{pageHeadline(page)}</p><div className="academic-references">{references.map((reference,index)=><a key={reference.url} href={reference.url} target="_blank" rel="noreferrer"><span>{String(index+1).padStart(2,'0')}</span><b>{reference.label}</b><ArrowRight size={13}/></a>)}</div><p className="references-note">Số liệu được ghi theo kỳ tham chiếu và đơn vị công bố. Ảnh tư liệu trang 3.1, 3.2 và 3.4 có nguồn, giấy phép trong chú thích; 9 ảnh thay thế và các ảnh minh họa còn lại được tạo bằng AI.</p></>}
       {page.type==='conclusion'&&<><div className="conclusion-opening"><p className="conclusion-lead">{pageHeadline(page)}</p><svg className="conclusion-illustration" viewBox="0 0 620 190" role="img" aria-label="Minh họa tăng trưởng kinh tế gắn với phát triển con người"><path d="M20 155H600" stroke="#c8b58e" strokeWidth="2"/><path d="M40 153c75-56 125-34 194-64 56-25 101-11 158-42 57-30 117-22 185-48" fill="none" stroke="#b19362" strokeWidth="3" strokeDasharray="6 8"/><circle cx="574" cy="42" r="24" fill="#e0c895" opacity=".55"/><rect x="73" y="108" width="62" height="45" rx="3" fill="#d7c6a7"/><rect x="154" y="84" width="62" height="69" rx="3" fill="#c4aa7c"/><rect x="235" y="61" width="62" height="92" rx="3" fill="#b19362"/><path d="M103 107V91h30v17M183 83V65h30v18M264 60V39h30v21" fill="none" stroke="#806844" strokeWidth="3"/><circle cx="405" cy="98" r="14" fill="#622b34"/><path d="M379 151c2-27 11-41 26-41s25 14 27 41" fill="#622b34"/><circle cx="466" cy="111" r="11" fill="#946f64"/><path d="M445 151c2-21 9-32 21-32s19 11 21 32" fill="#946f64"/><circle cx="524" cy="104" r="12" fill="#b19362"/><path d="M502 151c2-23 10-35 22-35s20 12 22 35" fill="#b19362"/><path d="M334 154v-31m-12 0h24m-20-15 8 15 8-15" stroke="#622b34" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/></svg></div><div className="conclusion-visual-caption"><span>ĐỘNG LỰC THỊ TRƯỜNG</span><i>→</i><span>TĂNG TRƯỞNG</span><i>→</i><span>CHẤT LƯỢNG SỐNG</span></div><div className="conclusion-points">{page.items.map(item=><div key={item[0]}><span>{item[0]}</span><b>{item[1]}</b><p>{item[2]}</p></div>)}</div><p className="conclusion-close">Tiếp tục hoàn thiện thể chế để tăng trưởng đi cùng tiến bộ, công bằng và phát triển bền vững.</p><p className="thank-you">CẢM ƠN GIẢNG VIÊN VÀ CÁC BẠN</p><div className="reference-list"><span>NGUỒN THAM KHẢO</span>{references.slice(0,3).map(r=><a key={r.url} href={r.url} target="_blank" rel="noreferrer">{r.label}<ArrowRight size={12}/></a>)}</div></>}
     </div>
-    <footer className="page-footer"><span>{pageNumber % 2 === 1 ? 'NHÓM 05 · MLN122' : 'KINH TẾ THỊ TRƯỜNG ĐỊNH HƯỚNG XHCN'}</span><b>{String(pageNumber).padStart(2,'0')}</b></footer>
+    <footer className="page-footer"><span className={page.sourceNote?'source-note':''}>{page.sourceNote|| (pageNumber % 2 === 1 ? 'NHÓM 05 · MLN122' : 'KINH TẾ THỊ TRƯỜNG ĐỊNH HƯỚNG XHCN')}</span><b>{String(pageNumber).padStart(2,'0')}</b></footer>
   </article>
+}
+
+function QuizPractice({page,answers,checked,score,checkedCount,total,onAnswer,onCheck,onReset}) {
+  return <section className="review-quiz" aria-label="Câu hỏi trắc nghiệm">
+    <div className="review-score"><span>ĐÚNG {score} / {total}</span><span>ĐÃ KIỂM TRA {checkedCount} / {total}</span><button onClick={onReset}>LÀM LẠI</button></div>
+    {page.questions.map((question,index)=>{
+      const isChecked=Boolean(checked[question.id]);
+      const isCorrect=answers[question.id]===question.answer;
+      return <fieldset className={`quiz-item ${isChecked?(isCorrect?'is-correct':'is-wrong'):''}`} key={question.id}>
+        <legend><b>{String((parseInt(page.roman.slice(-1),10)-1)*5+index+1).padStart(2,'0')}.</b> {question.q}</legend>
+        <div className="quiz-options">{question.options.map((option,optionIndex)=><button type="button" key={optionIndex} aria-pressed={answers[question.id]===optionIndex} onClick={()=>onAnswer(question.id,optionIndex)}>
+          <b>{String.fromCharCode(65+optionIndex)}.</b> {option}
+        </button>)}</div>
+        {!isChecked?<button className="quiz-check" disabled={answers[question.id]===undefined} onClick={()=>onCheck(question.id)}>KIỂM TRA</button>:<div className="quiz-feedback"><b>{isCorrect?'Chính xác':'Chưa đúng'}</b><span><strong>Đáp án đúng:</strong> {question.options[question.answer]}</span><span>{question.explanation}</span><small>Nguồn: {question.source}{question.sourceUrl&&<> · <a href={question.sourceUrl} target="_blank" rel="noreferrer">Xem nguồn</a></>}</small></div>}
+      </fieldset>;
+    })}
+  </section>;
+}
+
+function EssayPractice({questions}) {
+  const [open,setOpen]=useState({});
+  return <section className="review-essay-list" aria-label="Câu hỏi tự luận">{questions.map((question,index)=><article className="essay-prompt" key={question.id}>
+    <h3><span>{question.id.replace('essay','').padStart(2,'0')}</span>{question.q}</h3>
+    <button onClick={()=>setOpen(current=>({...current,[question.id]:!current[question.id]}))} aria-expanded={Boolean(open[question.id])}>{open[question.id]?'ẨN GỢI Ý':'GỢI Ý TRẢ LỜI'}</button>
+    {open[question.id]&&<><ul>{question.points.map(point=><li key={point}>{point}</li>)}</ul><small>{question.source}</small></>}
+  </article>)}</section>;
 }
 
 function PageContext({page}) {
@@ -211,8 +241,8 @@ function ArgumentDetails({page}) {
   </section>;
 }
 
-const FlipPage = React.forwardRef(function FlipPage({page,pageNumber,goTo,readerPages},ref){
-  return <div className="flip-page-shell" ref={ref}><BookPage page={page} pageNumber={pageNumber} goTo={goTo} readerPages={readerPages}/></div>
+const FlipPage = React.forwardRef(function FlipPage({page,pageNumber,goTo,readerPages,quizAnswers,quizChecked,quizScore,quizCheckedCount,quizTotal,onQuizAnswer,onQuizCheck,onQuizReset},ref){
+  return <div className="flip-page-shell" ref={ref}><BookPage page={page} pageNumber={pageNumber} goTo={goTo} readerPages={readerPages} quizAnswers={quizAnswers} quizChecked={quizChecked} quizScore={quizScore} quizCheckedCount={quizCheckedCount} quizTotal={quizTotal} onQuizAnswer={onQuizAnswer} onQuizCheck={onQuizCheck} onQuizReset={onQuizReset}/></div>
 });
 
 function BookCover({ openBook, opening=false }) {
@@ -222,8 +252,14 @@ function BookCover({ openBook, opening=false }) {
 }
 
 function App(){
-  const [opened,setOpened]=useState(false),[opening,setOpening]=useState(false),[toc,setToc]=useState(false),[fullscreen,setFullscreen]=useState(false),[single,setSingle]=useState(false),[orientation,setOrientation]=useState('landscape'),[pageIndex,setPageIndex]=useState(0),[flipState,setFlipState]=useState('read'),[size,setSize]=useState({width:600,height:740});
+  const [opened,setOpened]=useState(false),[opening,setOpening]=useState(false),[toc,setToc]=useState(false),[fullscreen,setFullscreen]=useState(false),[single,setSingle]=useState(false),[orientation,setOrientation]=useState('landscape'),[pageIndex,setPageIndex]=useState(0),[flipState,setFlipState]=useState('read'),[size,setSize]=useState({width:600,height:740}),[quizAnswers,setQuizAnswers]=useState({}),[quizChecked,setQuizChecked]=useState({});
   const readerPages=pages;
+  const allQuizQuestions=readerPages.filter(page=>page.type==='quiz').flatMap(page=>page.questions||[]);
+  const quizScore=allQuizQuestions.filter(question=>quizChecked[question.id]&&quizAnswers[question.id]===question.answer).length;
+  const quizCheckedCount=allQuizQuestions.filter(question=>quizChecked[question.id]).length;
+  const onQuizAnswer=(id,answer)=>{setQuizAnswers(current=>({...current,[id]:answer}));setQuizChecked(current=>({...current,[id]:false}))};
+  const onQuizCheck=id=>setQuizChecked(current=>({...current,[id]:true}));
+  const onQuizReset=()=>{setQuizAnswers({});setQuizChecked({})};
   const bookRef=useRef(null),openTimer=useRef(null);
   useEffect(()=>{const update=()=>{const portrait=window.matchMedia('(max-width: 860px)').matches;setSingle(portrait);const maxH=Math.min(window.innerHeight*.78,840);if(portrait){const w=Math.max(260,Math.min(window.innerWidth*.9,maxH*.72));setSize({width:Math.round(w),height:Math.round(Math.min(maxH,w/.68))})}else{const h=maxH;const w=Math.max(280,Math.min(window.innerWidth*.46,h*.85));setSize({width:Math.round(w),height:Math.round(h)})}};update();window.addEventListener('resize',update);return()=>window.removeEventListener('resize',update)},[]);
   useEffect(()=>()=>clearTimeout(openTimer.current),[]);
@@ -232,7 +268,7 @@ function App(){
   const turn=(direction)=>{const api=bookRef.current?.pageFlip?.();if(!api)return;if(direction==='next')api.flipNext('bottom');else api.flipPrev('bottom')};
   const turnToPage=(target)=>{const sourceRoman=pages[target]?.roman;const displayIndex=readerPages.findIndex(page=>page.roman===sourceRoman);if(displayIndex<0)return;bookRef.current?.pageFlip?.().turnToPage(displayIndex);setPageIndex(displayIndex);setToc(false)};
   const toggleFullscreen=async()=>{try{if(!document.fullscreenElement){await document.documentElement.requestFullscreen();setFullscreen(true)}else{await document.exitFullscreen();setFullscreen(false)}}catch{}}
-  useEffect(()=>{const onKey=e=>{if(e.key==='Escape'&&toc){setToc(false);return}if(toc)return;if(e.key==='ArrowRight'){e.preventDefault();turn('next')}if(e.key==='ArrowLeft'){e.preventDefault();turn('prev')}};window.addEventListener('keydown',onKey);return()=>window.removeEventListener('keydown',onKey)},[toc]);
+  useEffect(()=>{const onKey=e=>{if(e.key==='Escape'&&toc){setToc(false);return}if(toc||['INPUT','TEXTAREA','SELECT'].includes(e.target?.tagName))return;if(e.key==='ArrowRight'){e.preventDefault();turn('next')}if(e.key==='ArrowLeft'){e.preventDefault();turn('prev')}};window.addEventListener('keydown',onKey);return()=>window.removeEventListener('keydown',onKey)},[toc]);
   const closeToCover=()=>{setToc(false);setOpened(false);setOpening(false);setPageIndex(0)};
   const indicatorStart=single?pageIndex:Math.floor(pageIndex/2)*2;
   const indicatorEnd=single?pageIndex+1:Math.min(indicatorStart+2,readerPages.length);
@@ -245,7 +281,7 @@ function App(){
     <section className="book-stage" style={{width:`${totalWidth}px`,height:`${size.height}px`}} aria-label="Sách tương tác">
       {!opened&&!opening&&<BookCover openBook={openBook}/>}
       {(opened||opening)&&<div className="flipbook-shell"><HTMLFlipBook ref={bookRef} className="book-flip" width={size.width} height={size.height} size="fixed" minWidth={220} maxWidth={1000} minHeight={360} maxHeight={1400} drawShadow usePortrait={single} startPage={0} autoSize={false} maxShadowOpacity={0.58} showCover={false} showPageCorners mobileScrollSupport={false} swipeDistance={42} flippingTime={1050} clickEventForward useMouseEvents onFlip={changePage} onChangeOrientation={e=>setOrientation(e.data)} onChangeState={e=>setFlipState(e.data)}>
-          {readerPages.map((page,i)=><FlipPage key={page.roman} page={page} readerPages={readerPages} pageNumber={i+1} goTo={turnToPageAndClose}/>)}</HTMLFlipBook><span className={`corner-cue ${flipState==='user_fold'||flipState==='fold_corner'?'visible':''}`}>KÉO GÓC TRANG ĐỂ LẬT</span></div>}
+          {readerPages.map((page,i)=><FlipPage key={page.roman} page={page} readerPages={readerPages} pageNumber={i+1} goTo={turnToPageAndClose} quizAnswers={quizAnswers} quizChecked={quizChecked} quizScore={quizScore} quizCheckedCount={quizCheckedCount} quizTotal={allQuizQuestions.length} onQuizAnswer={onQuizAnswer} onQuizCheck={onQuizCheck} onQuizReset={onQuizReset}/>)}</HTMLFlipBook><span className={`corner-cue ${flipState==='user_fold'||flipState==='fold_corner'?'visible':''}`}>KÉO GÓC TRANG ĐỂ LẬT</span></div>}
       {opening&&<BookCover opening openBook={()=>{}}/>}
       <AnimatePresence>{toc&&<><motion.button className="toc-scrim" aria-label="Đóng mục lục" onClick={()=>setToc(false)} initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}}/><motion.aside className="toc-panel" initial={{x:30,opacity:0}} animate={{x:0,opacity:1}} exit={{x:30,opacity:0}}><div className="toc-heading"><div><span>MLN122 · NHÓM 05</span><h2>Mục lục</h2></div><button className="tool-button" onClick={()=>setToc(false)} aria-label="Đóng mục lục"><X/></button></div><button className="toc-cover" onClick={closeToCover}><span>BÌA SÁCH</span><b>Kinh tế thị trường định hướng XHCN</b><ArrowLeft size={15}/></button><div className="toc-items">{pages.map((p,i)=><button className={indicatorStart===readerPages.findIndex(entry=>entry.roman===p.roman)||indicatorEnd-1===readerPages.findIndex(entry=>entry.roman===p.roman)?'current':''} onClick={()=>turnToPage(i)} key={p.roman}><span>{p.roman}</span><b>{p.title}</b><small>{String(readerPages.findIndex(entry=>entry.roman===p.roman)+1).padStart(2,'0')}</small></button>)}</div></motion.aside></>}</AnimatePresence>
     </section>
